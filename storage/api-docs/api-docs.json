@@ -1,0 +1,262 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Payment System API",
+        "description": "",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/payment": {
+            "get": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Get list of payments",
+                "operationId": "d4ce85e5345756e1c37c70bf6b161c8d",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User id"
+                    },
+                    {
+                        "name": "startup_id",
+                        "in": "query",
+                        "description": "Startup id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Payment"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Update payment",
+                "operationId": "626889f98100ecb429df713762ec2e37",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Payment"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Payment"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Create payment",
+                "operationId": "c27325b9da1c231c0a1d34256ba14aa2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Payment"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Payment"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Delete payment",
+                "operationId": "3beb3c214baa45d5938c935f04d8c592",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Payment id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payment/{id}": {
+            "get": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Get payment by ID",
+                "operationId": "c4fe779f1d58fab24184683fcb3e1542",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Payment id",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Payment"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/payment/{id}/link": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get payment link",
+                "operationId": "93572c57a329b385fdcb6c9c879be070",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Payment id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Payment": {
+                "title": "Payment",
+                "description": "Payment model",
+                "properties": {
+                    "id": {
+                        "title": "id",
+                        "description": "id",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "title": "user_id",
+                        "description": "user_id",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "startup_id": {
+                        "title": "startup_id",
+                        "description": "startup_id",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "amount": {
+                        "title": "amount",
+                        "description": "amount",
+                        "type": "number",
+                        "format": "float",
+                        "example": 1.5
+                    },
+                    "status": {
+                        "title": "status",
+                        "description": "status",
+                        "type": "string",
+                        "example": "CREATED"
+                    },
+                    "created_at": {
+                        "title": "created_at",
+                        "description": "created_at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2022-01-22T21:34:30.000000"
+                    },
+                    "updated_at": {
+                        "title": "updated_at",
+                        "description": "updated_at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2022-01-22T21:34:30.000000"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Payment"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Payment",
+            "description": "API Endpoints of Payment"
+        }
+    ]
+}

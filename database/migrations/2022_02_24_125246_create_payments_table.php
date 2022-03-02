@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('startup_id')->unsigned();
             $table->unsignedDecimal('amount', $precision = 15, $scale = 2);
-            $table->enum('status', ['CREATOR', 'PENDING', 'SUCCESS', 'FAILURE']);
+            $table->enum('status', ['CREATED', 'PENDING', 'SUCCESS', 'FAILURE'])->defaul('CREATED');
             $table->timestamps();
         });
     }

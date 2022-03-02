@@ -13,4 +13,10 @@
 |
 */
 
-//$router->get('/', '');
+$router->get('payment/{id}/link', 'PaymentController@link');
+
+$router->get('payment', 'PaymentController@show');
+$router->get('payment/{id}', 'PaymentController@get');
+$router->post('payment', 'PaymentController@create');
+$router->delete('payment/{id}', 'PaymentController@delete');
+$router->put('payment', 'PaymentController@update');
