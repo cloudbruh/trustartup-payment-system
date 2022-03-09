@@ -6,6 +6,42 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/payment/sum": {
+            "get": {
+                "tags": [
+                    "Payment"
+                ],
+                "summary": "Get sum of payments",
+                "operationId": "0e806fe4cefe88df672c7382deb0d7d5",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User id"
+                    },
+                    {
+                        "name": "startup_id",
+                        "in": "query",
+                        "description": "Startup id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Payment"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/payment": {
             "get": {
                 "tags": [

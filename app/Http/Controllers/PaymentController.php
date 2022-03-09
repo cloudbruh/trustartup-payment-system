@@ -9,6 +9,45 @@ class PaymentController extends Controller
 {
     /**
      * @OA\Get(
+     *      path="/payment/sum",
+     *      tags={"Payment"},
+     *      summary="Get sum of payments",
+     *   @OA\Parameter(
+     *      name="user_id",
+     *      in="query",
+     *      description="User id",
+     *   ),
+     *   @OA\Parameter(
+     *      name="startup_id",
+     *      in="query",
+     *      description="Startup id",
+     *   ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 type="array",
+     *                 @OA\Items(ref="#/components/schemas/Payment"),
+     *             )
+     *          )
+     *      )
+     *  )
+     */
+
+    public function sum(Request $request)
+    {
+        $query = Payment::where('status', 'SUCCESS');
+        if ($request->user_id)
+            $query = $query->where('user_id', $request->user_id);
+        if ($request->startup_id)
+            $query = $query->where('startup_id', $request->startup_id);
+        return response()->json($query->sum('amount'));
+    }
+
+    /**
+     * @OA\Get(
      *      path="/payment",
      *      tags={"Payment"},
      *      summary="Get list of payments",

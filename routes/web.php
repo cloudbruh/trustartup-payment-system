@@ -15,6 +15,7 @@
 
 $router->get('payment/{id}/link', 'PaymentController@link');
 
+$router->get('payment/sum', 'PaymentController@sum');
 $router->get('payment', 'PaymentController@show');
 $router->get('payment/{id}', 'PaymentController@get');
 $router->post('payment', 'PaymentController@create');
